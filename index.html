@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zahra Almadeh | Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#top" class="brand">Zahra<span>.</span></a>
+
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <button class="btn btn-ghost" id="themeToggle" type="button" aria-label="Toggle dark mode">
+      🌙
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <section id="about" class="section hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <p class="eyebrow">Software Engineering Student</p>
+          <h1 class="title">Zahra Almadeh</h1>
+          <p class="muted about-text">
+            Software Engineering student at KFUPM, aspiring to build useful applications and websites that make work easier and improve user experience.
+          </p>
+
+          <p class="hero-badges">
+            <span class="badge">Junior Student at KFUPM</span>
+            <span class="badge">Web Development</span>
+            <span class="badge">Software Design</span>
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn" href="#projects">View Projects</a>
+            <a class="btn btn-ghost solid-ghost" href="#contact">Contact Me</a>
+          </div>
+
+          <div class="hero-meta">
+            <p id="welcomeMessage" class="muted"></p>
+            <p id="visitTimer" class="muted"></p>
+          </div>
+        </div>
+
+        <div class="hero-card card">
+          <img class="profile-img" src="assets/images/me.png" alt="Profile photo of Zahra Almadeh" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <h2>Projects</h2>
+        <p class="muted">Explore featured projects and dynamic GitHub repositories.</p>
+      </div>
+
+      <div class="project-toolbar card">
+        <div class="filter-buttons" role="group" aria-label="Project filters">
+          <button class="filter-btn active" data-filter="all" type="button">All</button>
+          <button class="filter-btn" data-filter="web" type="button">Web</button>
+          <button class="filter-btn" data-filter="finance" type="button">Finance</button>
+          <button class="filter-btn" data-filter="github" type="button">GitHub</button>
+        </div>
+
+        <div class="sort-box">
+          <label for="sortProjects">Sort by</label>
+          <select id="sortProjects">
+            <option value="default">Default</option>
+            <option value="name-asc">Name (A–Z)</option>
+            <option value="name-desc">Name (Z–A)</option>
+            <option value="date-new">Newest</option>
+            <option value="date-old">Oldest</option>
+          </select>
+        </div>
+      </div>
+
+      <p id="emptyMessage" class="muted empty-message">No projects found.</p>
+
+      <div class="projects-grid" id="projectsGrid">
+        <article class="card project-card" data-category="web" data-name="Smart Task Manager Web App" data-date="2025-03-10">
+          <img class="project-img" src="assets/images/TODO.png" alt="Smart Task Manager Web App preview" loading="lazy" />
+          <div class="project-body">
+            <div class="project-top">
+              <span class="project-tag">Web</span>
+              <span class="project-date">Mar 2025</span>
+            </div>
+            <h3>Smart Task Manager Web App</h3>
+            <p class="muted">
+              A responsive web app to create, edit, and organize daily tasks. It includes categories, due dates, dark mode, and local storage support.
+            </p>
+            <div class="project-links">
+              <a class="link" href="#" target="_blank" rel="noopener">Code</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card project-card" data-category="finance" data-name="Personal Finance Tracker" data-date="2025-01-18">
+          <img class="project-img" src="assets/images/FTAPP.png" alt="Personal Finance Tracker preview" loading="lazy" />
+          <div class="project-body">
+            <div class="project-top">
+              <span class="project-tag">Finance</span>
+              <span class="project-date">Jan 2025</span>
+            </div>
+            <h3>Personal Finance Tracker</h3>
+            <p class="muted">
+              A web-based finance tracker to monitor income and expenses, with balance summaries and charts to visualize spending.
+            </p>
+            <div class="project-links">
+              <a class="link" href="#" target="_blank" rel="noopener">Code</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="api-section">
+        <div class="section-head api-head">
+          <h3>Latest GitHub Repositories</h3>
+          <p class="muted">Live data fetched from GitHub API.</p>
+        </div>
+        <div id="githubStatus" class="muted api-status" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>Contact</h2>
+        <p class="muted">Send a message or feedback.</p>
+      </div>
+
+      <form class="card form" id="contactForm">
+        <div class="form-row">
+          <label>
+            Name
+            <input type="text" name="name" placeholder="Your name" required />
+          </label>
+
+          <label>
+            Email
+            <input type="email" name="email" placeholder="you@example.com" required />
+          </label>
+        </div>
+
+        <label>
+          Message
+          <textarea name="message" rows="5" placeholder="Write your message..." required></textarea>
+        </label>
+
+        <div class="form-actions">
+          <button class="btn" type="submit">Send</button>
+          <p class="muted" id="formStatus" aria-live="polite"></p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="muted footer-name">
+      © <span id="year"></span> Zahra Almadeh
+      <span class="dot">•</span>
+      <a class="link" href="mailto:almadehzahra05@gmail.com">almadehzahra05@gmail.com</a>
+      <span class="dot">•</span>
+      <a class="link" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+    </p>
+
+    <a class="link" href="#top">Back to top ↑</a>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
