@@ -75,14 +75,13 @@ const sortProjects = document.getElementById("sortProjects");
 const emptyMessage = document.getElementById("emptyMessage");
 
 let currentFilter = "all";
-let defaultOrder = [];
 
 function getProjectCards() {
     return Array.from(projectsGrid.querySelectorAll(".project-card"));
 }
 
 function applyFilterAndSort() {
-    const cards = getProjectCards();
+    let cards = getProjectCards();
 
     cards.forEach(function (card) {
         const category = card.getAttribute("data-category");
@@ -96,36 +95,30 @@ function applyFilterAndSort() {
 
     const sortValue = sortProjects ? sortProjects.value : "default";
 
-    if (sortValue === "default") {
-        visibleCards.sort(function (a, b) {
-            return defaultOrder.indexOf(a) - defaultOrder.indexOf(b);
-        });
-    } else {
-        visibleCards.sort(function (a, b) {
-            const nameA = a.getAttribute("data-name").toLowerCase();
-            const nameB = b.getAttribute("data-name").toLowerCase();
-            const dateA = new Date(a.getAttribute("data-date"));
-            const dateB = new Date(b.getAttribute("data-date"));
+    visibleCards.sort(function (a, b) {
+        const nameA = a.getAttribute("data-name").toLowerCase();
+        const nameB = b.getAttribute("data-name").toLowerCase();
+        const dateA = new Date(a.getAttribute("data-date"));
+        const dateB = new Date(b.getAttribute("data-date"));
 
-            if (sortValue === "name-asc") {
-                return nameA.localeCompare(nameB);
-            }
+        if (sortValue === "name-asc") {
+            return nameA.localeCompare(nameB);
+        }
 
-            if (sortValue === "name-desc") {
-                return nameB.localeCompare(nameA);
-            }
+        if (sortValue === "name-desc") {
+            return nameB.localeCompare(nameA);
+        }
 
-            if (sortValue === "date-new") {
-                return dateB - dateA;
-            }
+        if (sortValue === "date-new") {
+            return dateB - dateA;
+        }
 
-            if (sortValue === "date-old") {
-                return dateA - dateB;
-            }
+        if (sortValue === "date-old") {
+            return dateA - dateB;
+        }
 
-            return 0;
-        });
-    }
+        return 0;
+    });
 
     visibleCards.forEach(function (card) {
         projectsGrid.appendChild(card);
@@ -220,7 +213,6 @@ fetch("https://api.github.com/users/YOUR_GITHUB_USERNAME/repos")
             projectsGrid.appendChild(card);
         });
 
-        defaultOrder = getProjectCards();
         applyFilterAndSort();
     })
     .catch(function () {
@@ -230,5 +222,4 @@ fetch("https://api.github.com/users/YOUR_GITHUB_USERNAME/repos")
         }
     });
 
-defaultOrder = getProjectCards();
 applyFilterAndSort();
