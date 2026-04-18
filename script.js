@@ -1,8 +1,10 @@
+// ================= YEAR =================
 const yearSpan = document.getElementById("year");
 if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
 }
 
+// ================= THEME =================
 const themeButton = document.getElementById("themeToggle");
 const htmlTag = document.documentElement;
 
@@ -17,7 +19,7 @@ htmlTag.setAttribute("data-theme", savedTheme);
 updateThemeButton(savedTheme);
 
 if (themeButton) {
-    themeButton.addEventListener("click", function () {
+    themeButton.addEventListener("click", () => {
         const currentTheme = htmlTag.getAttribute("data-theme");
         const newTheme = currentTheme === "dark" ? "light" : "dark";
         htmlTag.setAttribute("data-theme", newTheme);
@@ -26,6 +28,7 @@ if (themeButton) {
     });
 }
 
+// ================= FORM VALIDATION =================
 const contactForm = document.getElementById("contactForm");
 const statusText = document.getElementById("formStatus");
 
@@ -34,33 +37,37 @@ function showStatus(message, color) {
     statusText.textContent = message;
     statusText.style.color = color;
 
-    setTimeout(function () {
+    setTimeout(() => {
         statusText.textContent = "";
-    }, 3000);
+    }, 4000);
+}
+
+// ✅ Improved email validation (fix from grading feedback)
+function isValidEmail(email) {
+    const pattern = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+    return pattern.test(email);
 }
 
 if (contactForm && statusText) {
     contactForm.addEventListener("submit", function (event) {
         event.preventDefault();
 
-        const name = contactForm.elements["name"].value.trim();
-        const email = contactForm.elements["email"].value.trim();
-        const message = contactForm.elements["message"].value.trim();
-
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const name = contactForm.name.value.trim();
+        const email = contactForm.email.value.trim();
+        const message = contactForm.message.value.trim();
 
         if (!name || !email || !message) {
-            showStatus("Please fill in all fields.", "crimson");
+            showStatus("⚠️ Please fill in all fields.", "crimson");
             return;
         }
 
-        if (!emailPattern.test(email)) {
-            showStatus("Please enter a valid email address.", "orange");
+        if (!isValidEmail(email)) {
+            showStatus("⚠️ Invalid email format (example: name@email.com)", "orange");
             return;
         }
 
         if (message.length < 10) {
-            showStatus("Message should be at least 10 characters long.", "orange");
+            showStatus("⚠️ Message must be at least 10 characters.", "orange");
             return;
         }
 
@@ -69,75 +76,65 @@ if (contactForm && statusText) {
     });
 }
 
+// ================= PROJECT FILTER =================
 const filterButtons = document.querySelectorAll(".filter-btn");
 const projectsGrid = document.getElementById("projectsGrid");
 const sortProjects = document.getElementById("sortProjects");
 const emptyMessage = document.getElementById("emptyMessage");
 
 let currentFilter = "all";
+let defaultOrder = [];
 
 function getProjectCards() {
     return Array.from(projectsGrid.querySelectorAll(".project-card"));
 }
 
 function applyFilterAndSort() {
-    let cards = getProjectCards();
+    const cards = getProjectCards();
 
-    cards.forEach(function (card) {
+    cards.forEach(card => {
         const category = card.getAttribute("data-category");
         const matches = currentFilter === "all" || category === currentFilter;
         card.style.display = matches ? "block" : "none";
     });
 
-    const visibleCards = cards.filter(function (card) {
-        return card.style.display !== "none";
-    });
-
+    const visibleCards = cards.filter(card => card.style.display !== "none");
     const sortValue = sortProjects ? sortProjects.value : "default";
 
-    visibleCards.sort(function (a, b) {
-        const nameA = a.getAttribute("data-name").toLowerCase();
-        const nameB = b.getAttribute("data-name").toLowerCase();
-        const dateA = new Date(a.getAttribute("data-date"));
-        const dateB = new Date(b.getAttribute("data-date"));
+    if (sortValue === "default") {
+        visibleCards.sort((a, b) =>
+            defaultOrder.indexOf(a) - defaultOrder.indexOf(b)
+        );
+    } else {
+        visibleCards.sort((a, b) => {
+            const nameA = a.dataset.name.toLowerCase();
+            const nameB = b.dataset.name.toLowerCase();
+            const dateA = new Date(a.dataset.date);
+            const dateB = new Date(b.dataset.date);
 
-        if (sortValue === "name-asc") {
-            return nameA.localeCompare(nameB);
-        }
+            if (sortValue === "name-asc") return nameA.localeCompare(nameB);
+            if (sortValue === "name-desc") return nameB.localeCompare(nameA);
+            if (sortValue === "date-new") return dateB - dateA;
+            if (sortValue === "date-old") return dateA - dateB;
 
-        if (sortValue === "name-desc") {
-            return nameB.localeCompare(nameA);
-        }
+            return 0;
+        });
+    }
 
-        if (sortValue === "date-new") {
-            return dateB - dateA;
-        }
-
-        if (sortValue === "date-old") {
-            return dateA - dateB;
-        }
-
-        return 0;
-    });
-
-    visibleCards.forEach(function (card) {
-        projectsGrid.appendChild(card);
-    });
+    visibleCards.forEach(card => projectsGrid.appendChild(card));
 
     if (emptyMessage) {
         emptyMessage.style.display = visibleCards.length === 0 ? "block" : "none";
     }
 }
 
-filterButtons.forEach(function (button) {
-    button.addEventListener("click", function () {
-        currentFilter = button.getAttribute("data-filter");
+filterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        currentFilter = button.dataset.filter;
 
-        filterButtons.forEach(function (btn) {
-            btn.classList.remove("active");
-        });
-
+        filterButtons.forEach(btn => btn.classList.remove("active"));
         button.classList.add("active");
+
         applyFilterAndSort();
     });
 });
@@ -146,6 +143,7 @@ if (sortProjects) {
     sortProjects.addEventListener("change", applyFilterAndSort);
 }
 
+// ================= PERSONALIZATION =================
 const welcomeMessage = document.getElementById("welcomeMessage");
 let savedVisitorName = localStorage.getItem("visitorName");
 
@@ -160,24 +158,26 @@ if (welcomeMessage && savedVisitorName) {
     welcomeMessage.textContent = `Welcome back, ${savedVisitorName}!`;
 }
 
+// ================= TIMER =================
 const visitTimer = document.getElementById("visitTimer");
 let secondsOnSite = 0;
 
-setInterval(function () {
+setInterval(() => {
     secondsOnSite++;
     if (visitTimer) {
         visitTimer.textContent = `⏱ Time on site: ${secondsOnSite}s`;
     }
 }, 1000);
 
+// ================= GITHUB API =================
 const githubStatus = document.getElementById("githubStatus");
 
 function createGitHubCard(repo) {
     const article = document.createElement("article");
     article.className = "card project-card";
-    article.setAttribute("data-category", "github");
-    article.setAttribute("data-name", repo.name);
-    article.setAttribute("data-date", repo.updated_at);
+    article.dataset.category = "github";
+    article.dataset.name = repo.name;
+    article.dataset.date = repo.updated_at;
 
     article.innerHTML = `
         <div class="project-body">
@@ -188,7 +188,7 @@ function createGitHubCard(repo) {
             <h3>${repo.name}</h3>
             <p class="muted">${repo.description || "No description available."}</p>
             <div class="project-links">
-                <a class="link" href="${repo.html_url}" target="_blank" rel="noopener">View Repo</a>
+                <a class="link" href="${repo.html_url}" target="_blank">View Repo</a>
             </div>
         </div>
     `;
@@ -196,30 +196,26 @@ function createGitHubCard(repo) {
     return article;
 }
 
-fetch("https://api.github.com/users/YOUR_GITHUB_USERNAME/repos")
-    .then(function (response) {
-        if (!response.ok) {
-            throw new Error("Failed to fetch GitHub repositories.");
-        }
-        return response.json();
+fetch("https://api.github.com/users/Zahraaalmadeh/repos")
+    .then(res => {
+        if (!res.ok) throw new Error();
+        return res.json();
     })
-    .then(function (repos) {
-        if (githubStatus) {
-            githubStatus.textContent = "GitHub repositories loaded successfully.";
-        }
+    .then(repos => {
+        githubStatus.textContent = "GitHub repositories loaded successfully.";
 
-        repos.slice(0, 3).forEach(function (repo) {
+        repos.slice(0, 3).forEach(repo => {
             const card = createGitHubCard(repo);
             projectsGrid.appendChild(card);
         });
 
+        defaultOrder = getProjectCards();
         applyFilterAndSort();
     })
-    .catch(function () {
-        if (githubStatus) {
-            githubStatus.textContent = "Unable to load GitHub repositories right now.";
-            githubStatus.style.color = "crimson";
-        }
+    .catch(() => {
+        githubStatus.textContent = "Unable to load GitHub repositories.";
+        githubStatus.style.color = "crimson";
     });
 
+defaultOrder = getProjectCards();
 applyFilterAndSort();

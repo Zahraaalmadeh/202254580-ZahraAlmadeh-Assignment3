@@ -1,78 +1,234 @@
 # 202254580-ZahraAlmadeh-Assignment3
-# Zahra Almadeh Portfolio – Assignment 3
+# Zahra Almadeh Portfolio Website
 
-## Project Description
-This project is an advanced personal portfolio website built for **Assignment 3 – Advanced Functionality**. It extends earlier portfolio versions by adding dynamic behavior, external API integration, stronger validation, state management, visual sorting and filtering, and performance improvements.
+## Project Title
+Personal Portfolio Website for Zahra Almadeh
 
-The website presents my profile and projects in a clean, professional, and responsive interface while demonstrating practical front-end development skills using **HTML, CSS, and JavaScript**.
+## Overview
+This project is a personal portfolio website developed as part of a university assignment. The website presents personal, academic, and technical information in a professional and interactive format. It is designed to showcase the student’s background, selected projects, technical interests, and contact information while demonstrating front-end web development skills.
 
----
-
-## Features Implemented
-
-### 1. Advanced Functionality
-- Responsive portfolio layout
-- Sticky navigation header
-- Enhanced hero section with improved visual design
-- Better project card styling and interaction
-- Professional UI with polished spacing, typography, and hover effects
-
-### 2. API Integration
-- Integrated the **GitHub API** to fetch and display repositories dynamically
-- Added user-friendly fallback handling if the API request fails
-- Displays repository name, description, update date, and direct repository link
-
-### 3. Complex Logic
-- Project filtering by category
-- Project sorting by:
-    - Name (A–Z / Z–A)
-    - Date (Newest / Oldest)
-- Combined filtering and sorting logic
-- Contact form validation with:
-    - empty-field checking
-    - email format validation
-    - minimum message length validation
-- Session timer showing time spent on the site
-
-### 4. State Management
-- Dark/light mode toggle saved in `localStorage`
-- Visitor name saved in `localStorage`
-- Personalized welcome message restored across visits
-
-### 5. Performance Improvements
-- Added `loading="lazy"` to images
-- Reduced unnecessary DOM updates
-- Reused helper functions
-- Kept the project lightweight and organized
-
-### 6. Code Quality
-- Clear separation of HTML, CSS, and JavaScript
-- Reusable styles and helper functions
-- Clean variable names and comments
-- Improved readability and maintainability
+The website combines clean visual design with practical functionality. It includes responsive sections, project filtering and sorting, form validation, theme switching, personalization using browser storage, and dynamic GitHub repository integration. The overall goal of the project is to build a modern and user-friendly portfolio that reflects both design awareness and technical ability.
 
 ---
 
-## Real Projects Included
-The portfolio showcases the following academic and technical projects:
+## Purpose of the Project
+The main purpose of this project is to create a complete portfolio website that can serve as both:
+1. An academic assignment submission
+2. A personal professional portfolio foundation for future use
 
-- **Airplane Accident Severity Classification**  
-  Python, Deep Learning, model evaluation, cross-validation
+---
 
-- **Campus Events Database System**  
-  SQL, relational database design, normalization, triggers, procedures, views
+## Project Objectives
+The project was designed to achieve the following objectives:
 
-- **Course Scheduling & Route Planner**  
-  Java, OOP, Composite pattern, Strategy pattern, UML design
+- Build a fully functional and responsive website
+- Apply HTML, CSS, and JavaScript concepts in a real project
+- Demonstrate project work in an organized way
+- Implement dynamic front-end features
+- Improve user interaction and usability
+- Use API integration to display live data
+- Provide professional-level documentation
 
-- **Student Records Management System**  
-  Java, data structures, hash tables, CRUD operations, CSV storage
+---
+
+## Features
+
+### 1. Navigation Bar
+- Sticky header for easy navigation
+- Links to About, Projects, and Contact sections
+- Theme toggle button for switching between light and dark mode
+
+### 2. Hero / About Section
+- Displays name and role
+- Short introduction
+- Skill badges
+- Call-to-action buttons
+- Personalized welcome message
+- Live visit timer
+- Profile image
+
+### 3. Projects Section
+- Displays project cards with:
+  - Title
+  - Description
+  - Date
+  - Category
+- Filtering system (AI, Database, Java, GitHub)
+- Sorting system (name and date)
+- Empty message when no projects match
+
+### 4. GitHub Integration
+- Fetches repositories from GitHub API
+- Displays latest repositories dynamically
+- Handles loading and error states
+
+### 5. Contact Form
+- Fields: Name, Email, Message
+- Validation includes:
+  - Required fields
+  - Email format checking
+  - Minimum message length
+- Displays success and error messages
+
+### 6. Theme Toggle
+- Switch between light and dark mode
+- Saves preference in localStorage
+
+### 7. Personalization
+- Prompts user for name
+- Stores name in localStorage
+- Displays welcome-back message
+
+### 8. Timer Feature
+- Shows how long the user has stayed on the website
+- Updates every second
+
+### 9. Footer
+- Displays current year automatically
+- Email link
+- LinkedIn link
+- Back-to-top link
+
+---
+
+## Technologies Used
+
+### HTML5
+- Semantic structure
+- Accessibility-friendly elements
+
+### CSS3
+- CSS variables
+- Flexbox and Grid
+- Responsive design
+- Theme support
+
+### JavaScript
+- DOM manipulation
+- Event handling
+- Form validation
+- Local storage
+- Fetch API
+
+### GitHub API
+- Used to fetch live repositories
+
+---
+
+## File Structure
+
+```
+project-folder/
+│
+├── index.html
+├── styles.css
+├── script.js
+└── assets/
+    └── images/
+        └── me.png
+```
 
 ---
 
 ## Setup Instructions
 
-### Run Locally
-1. Clone the repository:
-```bash
-git clone https://github.com/your-username/id-name-assignment3.git
+### Option 1: Open in Browser
+1. Place all files in one folder
+2. Ensure correct structure
+3. Open `index.html` in a browser
+
+### Option 2: Use VS Code Live Server
+1. Open project in VS Code
+2. Install Live Server extension
+3. Right-click index.html
+4. Click "Open with Live Server"
+
+---
+
+## How to Use
+
+- Use navigation bar to move between sections
+- Toggle theme using the button
+- Filter and sort projects
+- Fill contact form correctly to submit
+- View GitHub repositories automatically
+
+---
+
+## Functional Highlights
+
+- Dynamic filtering and sorting
+- Real-time validation
+- Persistent theme using localStorage
+- API integration for live data
+- Personalized user experience
+
+---
+
+## Accessibility
+
+- Semantic HTML structure
+- Labels for all inputs
+- Alt text for images
+- ARIA attributes for accessibility
+- Clear user feedback messages
+
+---
+
+## Browser Compatibility
+
+Works on:
+- Chrome
+- Edge
+- Firefox
+- Safari
+
+---
+
+## Known Limitations
+
+- Contact form does not send real emails
+- GitHub API depends on internet
+- Prompt-based input is basic UX
+- LinkedIn link is placeholder
+
+---
+
+## Improvements from Assignment 2
+
+- Fixed email validation issue
+- Added detailed setup instructions
+- Improved documentation depth
+- Enhanced user feedback messages
+- Added better explanation of features
+
+---
+
+## Future Improvements
+
+- Connect form to backend service
+- Add project images
+- Replace prompt with modal
+- Add search feature
+- Improve animations
+- Enhance accessibility further
+
+---
+
+## Author
+
+Zahra Almadeh  
+Software Engineering Student at KFUPM
+
+---
+
+## Contact
+
+Email: almadehzahra05@gmail.com  
+LinkedIn: (update with real link)
+
+---
+
+## Final Note
+
+This project demonstrates the ability to build a complete, interactive, and responsive portfolio website using core front-end technologies. It also reflects improvements based on previous feedback and focuses on both functionality and documentation quality.

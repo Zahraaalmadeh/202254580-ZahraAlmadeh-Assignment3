@@ -364,18 +364,6 @@ html[data-theme="dark"] .site-header {
     border-color: color-mix(in srgb, var(--brand-deep), transparent 65%);
 }
 
-.project-img {
-    width: 100%;
-    height: 210px;
-    object-fit: cover;
-    border-bottom: 1px solid var(--border);
-    background: linear-gradient(
-            120deg,
-            color-mix(in srgb, var(--brand), transparent 82%),
-            color-mix(in srgb, var(--accent), transparent 88%)
-    );
-}
-
 .project-body {
     padding: 1.15rem;
 }
