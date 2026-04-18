@@ -225,7 +225,7 @@ Software Engineering Student at KFUPM
 ## Contact
 
 Email: almadehzahra05@gmail.com  
-LinkedIn: (update with real link)
+LinkedIn: https://www.linkedin.com/feed/
 
 ---
 
